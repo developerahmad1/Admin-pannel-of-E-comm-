@@ -32,6 +32,7 @@ export default function Login() {
 
   const collectData = async () => {
     console.log(email, password);
+    console.log("env variable is :", process.env.REACT_APP_API)
     let result = await fetch(`${process.env.REACT_APP_API}/admin/login`, {
       method: "post",
       body: JSON.stringify({ email, password }),
