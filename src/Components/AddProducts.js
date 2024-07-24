@@ -54,7 +54,7 @@ function ImageGallery() {
     data.append("details", formData.details);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API}/product`, {
+      const response = await fetch(`https://e-comm-server-indol.vercel.app/product`, {
         method: "POST",
         body: data,
       });

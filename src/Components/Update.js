@@ -20,7 +20,7 @@ export default function Update() {
     try {
       console.warn(params);
       let result = await fetch(
-        `${process.env.REACT_APP_API}/product/${params.id}`
+        `https://e-comm-server-indol.vercel.app/product/${params.id}`
       );
       result = await result.json();
       console.warn(result);
@@ -30,7 +30,6 @@ export default function Update() {
       setCategory(result.category);
       setDetails(result.details);
     } catch (err) {
-      console.log("Error fetching product details:", err);
     }
   };
 
@@ -40,7 +39,7 @@ export default function Update() {
     try {
       const formData = new FormData(event.target); // Get form data
       const response = await fetch(
-        `${process.env.REACT_APP_API}/product/update/${params.id}`,
+        `https://e-comm-server-indol.vercel.app/product/update/${params.id}`,
         {
           method: "PATCH",
           body: formData,
@@ -49,7 +48,6 @@ export default function Update() {
 
       if (response.ok) {
         toast.success("Product updated successfully!"); // Show success toast
-        console.log("Success toast displayed"); // Debugging line
         navigate("/");
       } else {
         const errorText = await response.text();

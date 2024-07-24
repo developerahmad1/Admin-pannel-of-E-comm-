@@ -53,7 +53,7 @@ export default function SignUp() {
     }
 
     try {
-      let result = await fetch(`${process.env.REACT_APP_API}/admin/register`, {
+      let result = await fetch(`https://e-comm-server-indol.vercel.app/admin/register`, {
         method: "post",
         body: JSON.stringify({ name, email, password }),
         headers: {

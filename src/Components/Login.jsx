@@ -31,9 +31,7 @@ export default function Login() {
   }, [email, password]);
 
   const collectData = async () => {
-    console.log(email, password);
-    console.log("env variable is :", process.env.REACT_APP_API)
-    let result = await fetch(`${process.env.REACT_APP_API}/admin/login`, {
+    let result = await fetch(`https://e-comm-server-indol.vercel.app/admin/login`, {
       method: "post",
       body: JSON.stringify({ email, password }),
       headers: {
@@ -41,7 +39,6 @@ export default function Login() {
       },
     });
     result = await result.json();
-    console.log(result);
     if (result.name) {
       localStorage.setItem("user", JSON.stringify(result));
       login();

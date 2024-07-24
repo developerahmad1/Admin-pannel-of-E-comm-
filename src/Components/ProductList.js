@@ -18,11 +18,10 @@ export default function ProductList(props) {
 
   const getProducts = async () => {
     try {
-      let result = await fetch(`${process.env.REACT_APP_API}/product`);
+      let result = await fetch(`https://e-comm-server-indol.vercel.app/product`);
       result = await result.json();
       result = result.reverse();
       result = result.filter((product) => product.category === props.category);
-      console.log("All Products : ", result);
       setProducts(result);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -31,7 +30,7 @@ export default function ProductList(props) {
 
   const deleteProduct = async (productId) => {
     try {
-      await fetch(`${process.env.REACT_APP_API}/product/${productId}`, {
+      await fetch(`https://e-comm-server-indol.vercel.app/product/${productId}`, {
         method: "DELETE",
       });
       getProducts();
