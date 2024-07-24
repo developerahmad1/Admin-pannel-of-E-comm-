@@ -1,0 +1,27 @@
+.footer .name {
+    color: #fff;
+}
+.footer .name:hover {
+    color: #ffa900;
+}
+.footer .text_area {
+    width: 400px;
+    margin: auto;
+}
+
+.footer .text {
+    color: #fff;
+    text-align: justify;
+    margin-top: -25px;
+}
+.footer .text:hover {
+    color: #ffa900;
+
+}
+
+
+@media(max-width : 460px){
+    .footer .text_area {
+        width: auto;
+    }
+}

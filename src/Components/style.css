@@ -1,0 +1,397 @@
+body {
+  /* overflow: hidden; */
+  background-color: #07193d;
+  color: #EBF1FC;
+}
+
+
+
+/* Nav Links Befor Login */
+#myNavBar {
+  
+  width: 100%;
+  top: 0;
+  background-color: #07193d;
+  outline: 2px solid #EBF1FC;
+}
+
+.nav-right {
+  text-align: right;
+}
+
+.nav-right .login {
+  margin-right: 50px;
+}
+
+.nav-ul li {
+  display: inline-block;
+  padding: 10px;
+}
+
+/* Nav LInks  */
+.nav-ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5PX;
+}
+
+.nav-ul {
+  padding: 15px;
+  margin: 0;
+  background-color: #07193d;
+}
+
+
+#myNavBar .nav-ul .active {
+  font-weight: 700; 
+  text-decoration: underline 2px white;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Footer Style */
+.footer {
+  width: 100%;
+  background-color: #000000;
+  padding: 20px;
+  /* border: 2px solid #EBF1FC; */
+}
+
+.footer h3 {
+  text-align: center;
+  color: #EBF1FC;
+  font-size: 40px;
+  padding: 40px;
+  margin: auto;
+}
+
+
+/* General Styles */
+.Signup_Container {
+  width: 330px;
+  border-radius: 30px;
+  background-color: #f1dac4;
+  padding: 20px;
+  margin: auto;
+  margin-top: 80px;
+}
+
+.inputBox {
+  display: block;
+  margin-top: 25px;
+  width: 300px;
+  border: 1px solid skyblue;
+  font-size: 25px;
+  border-radius: 30px;
+  padding: 5px 20px;
+}
+
+.signUpBtn {
+  width: 300px;
+  margin-top: 15px;
+  background-color: #07193d;
+  border: none;
+  color: #f1dac4;
+  font-size: 30px;
+  border-radius: 30px;
+  padding: 5px 0;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3); /* Box shadow on all sides */
+  transition: box-shadow 0.3s ease; /* Smooth transition for the hover effect */
+}
+
+.signUpBtn:hover {
+  box-shadow: none; /* Remove box shadow on hover */
+  transition: box-shadow 0.3s ease; /* Smooth transition for the hover effect */
+}
+
+.LoginBtn {
+  width: 300px;
+  margin-top: 15px;
+  background-color: #fff;
+  border: none;
+  color: skyblue;
+  font-size: 30px;
+  border-radius: 30px;
+  padding: 5px 0;
+  font-size: 85px;
+}
+
+/* Responsive Styles */
+@media (max-width: 380px) {
+  .Signup_Container {
+    width: 90%; /* Use a percentage to make the container responsive */
+    padding: 15px; /* Adjust padding for smaller screens */
+    margin-top: 80px; /* Adjust top margin for smaller screens */
+  }
+
+  .inputBox {
+    width: 100%; /* Make input boxes fill the container width */
+    font-size: 18px; /* Adjust font size for smaller screens */
+    padding: 5px 10px; /* Adjust padding for smaller screens */
+  }
+
+  .signUpBtn, .LoginBtn {
+    width: 100%; /* Make buttons fill the container width */
+    font-size: 20px; /* Adjust font size for smaller screens */
+    padding: 10px 0; /* Adjust padding for smaller screens */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Sign Up Page Style*/
+.sign-login-body {
+  background-color: blue;
+}
+
+.signup-box {
+  width: 360px;
+  height: 600px;
+  margin: auto;
+  background-color: white;
+  border-radius: 40px;
+  margin-top: 70px;
+}
+
+h1 {
+  text-align: center;
+  padding: 15px;
+  padding-top: 20px;
+}
+
+form {
+  width: 300px;
+  margin-left: 20px;
+}
+
+form label {
+  display: flex;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  border: 3px solid gray;
+  border-radius: 8px;
+  outline: none;
+}
+
+input[type="submit"] {
+  width: 320px;
+  height: 35px;
+  margin-top: 15px;
+  background-color: #135cd1;
+  border: none;
+  color: white;
+  font-size: 20px;
+}
+
+p {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 15px;
+  line-height: 25px;
+}
+
+p a {
+  color: blue;
+}
+
+h6 {
+  text-align: end;
+  font-size: 20px;
+  color: white;
+  margin-top: 50px;
+  margin-top: 100px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.p-2 {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  margin-top: -10px;
+}
+
+.p-2 a {
+  color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Products Page Style */
+#myBoxesContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 80px;
+  background-color: #07193d;
+}
+
+.product-card {
+  width: 250px;
+  height: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.top-part {
+  height: 200px;
+  background: #fff;
+  background-color: #ffffff;
+  overflow: hidden;
+  border: 1px solid white;
+}
+
+.top-part img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.top-part:hover::before {
+  opacity: 1;
+}
+
+.bottom-part {
+  height: 226px;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #f1dac4;
+  color: #07193d;
+}
+
+.product-name {
+  height: 100px;
+  font-size: 15px;
+  line-height: 23px;
+  overflow: hidden;
+  text-align: justify;
+  margin-bottom: -18px;
+  font-weight: 500;
+}
+
+.category {
+  height: 40px;
+  font-size: 14px;
+  margin-top: -13px;
+}
+
+.category p {
+  font-size: 22px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.category .old_Price {
+  text-decoration: line-through 1px solid black;
+  font-size: 14px;
+  font-weight: 400;
+  color: #484646;
+}
+
+.buttons {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons button {
+  width: 100px;
+  height: 40px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
+
+.update-button {
+  background-color: green;
+  color: white;
+}
+
+.update-button:hover {
+  background-color: darkgreen;
+}
+
+
+
+
+
+
+/*    Scroll to Top Button */
+.scrollToTop{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
