@@ -9,6 +9,8 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [buttonText, setButtonText] = useState("Login");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (isLogin) {
@@ -31,21 +33,32 @@ export default function Login() {
   }, [email, password]);
 
   const collectData = async () => {
-    let result = await fetch(`https://e-comm-server-indol.vercel.app/admin/login`, {
-      method: "post",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    result = await result.json();
-    if (result.name) {
-      localStorage.setItem("user", JSON.stringify(result));
-      login();
-      toast.success('Login Successfully');
-      navigate("/");
-    } else {
-      toast.error('Invalid Details');
+    setIsLoading(true);
+    setButtonText("Login in.....");
+
+    try {
+      let result = await fetch(`https://e-comm-server-indol.vercel.app/admin/login`, {
+        method: "post",
+        body: JSON.stringify({ email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      result = await result.json();
+
+      if (result.name) {
+        localStorage.setItem("user", JSON.stringify(result));
+        login();
+        toast.success('Login Successfully');
+        navigate("/");
+      } else {
+        toast.error('Invalid Details');
+      }
+    } catch (err) {
+      toast.error('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+      setButtonText("Login");
     }
   };
 
@@ -65,8 +78,8 @@ export default function Login() {
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
-      <button onClick={collectData} className="signUpBtn">
-        Login
+      <button onClick={collectData} className="signUpBtn" disabled={isLoading}>
+        {buttonText}
       </button>
     </div>
   );

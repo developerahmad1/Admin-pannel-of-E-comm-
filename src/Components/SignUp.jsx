@@ -9,6 +9,7 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [buttonText, setButtonText] = useState("Sign Up");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -20,15 +21,18 @@ export default function SignUp() {
   const collectData = async () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
+    setButtonText("Signup Up.....");
 
     if (!name) {
       toast.error("Enter Your Name");
+      setButtonText("Sign Up");
       setIsSubmitting(false);
       return;
     }
 
     if (!email) {
       toast.error("Enter Email");
+      setButtonText("Sign Up");
       setIsSubmitting(false);
       return;
     }
@@ -36,18 +40,21 @@ export default function SignUp() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       toast.error("Enter Valid Email");
+      setButtonText("Sign Up");
       setIsSubmitting(false);
       return;
     }
 
     if (!password) {
       toast.error("Enter Password");
+      setButtonText("Sign Up");
       setIsSubmitting(false);
       return;
     }
 
     if (password.length < 8) {
       toast.error("Password should be at least 8 characters");
+      setButtonText("Sign Up");
       setIsSubmitting(false);
       return;
     }
@@ -65,6 +72,7 @@ export default function SignUp() {
       if (result._id) {
         login();
         toast.success("Successfully Signed Up");
+        navigate("/");
       } else {
         toast.error(result.result);
       }
@@ -72,6 +80,7 @@ export default function SignUp() {
       toast.error("An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
+      setButtonText("Sign Up");
     }
   };
 
@@ -110,7 +119,7 @@ export default function SignUp() {
         value={password}
       />
       <button onClick={collectData} className="signUpBtn" disabled={isSubmitting}>
-        Sign Up
+        {buttonText}
       </button>
     </div>
   );

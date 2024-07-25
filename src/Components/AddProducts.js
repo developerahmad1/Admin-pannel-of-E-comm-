@@ -18,6 +18,9 @@ function ImageGallery() {
     details: "",
   });
 
+  // State to manage button text and loading status
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (!isLogin) {
       // If not logged in, navigate to the signup page
@@ -44,10 +47,12 @@ function ImageGallery() {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading state to true
 
     // Ensure image is selected
     if (!formData.profileImage) {
       toast.error("Please select an image.");
+      setLoading(false); // Reset loading state
       return;
     }
 
@@ -83,11 +88,13 @@ function ImageGallery() {
         // Handle error case
         const errorText = await response.text();
         console.error("Error:", errorText);
-        toast.error(`Failed to add product. Vercel is not allow this. `);
+        toast.error("Failed to add product. Vercel might be blocking this.");
       }
     } catch (err) {
       console.error("Error:", err);
       toast.error("An error occurred. Please try again.");
+    } finally {
+      setLoading(false); // Reset loading state
     }
   };
 
@@ -231,8 +238,9 @@ function ImageGallery() {
                 type="submit"
                 className="btn btn-outline-info col-sm-12 mt-2 mb-5 w-100"
                 style={{ height: "50px", fontSize: "25px" }}
+                disabled={loading} // Disable button when loading
               >
-                Add Product
+                {loading ? "Adding Product........." : "Add Product"}
               </button>
             </div>
           </div>
