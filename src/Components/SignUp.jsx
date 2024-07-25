@@ -21,7 +21,7 @@ export default function SignUp() {
   const collectData = async () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
-    setButtonText("Signup Up.....");
+    setButtonText("Signup.....");
 
     if (!name) {
       toast.error("Enter Your Name");

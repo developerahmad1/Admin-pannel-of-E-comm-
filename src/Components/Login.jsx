@@ -34,7 +34,7 @@ export default function Login() {
 
   const collectData = async () => {
     setIsLoading(true);
-    setButtonText("Login in.....");
+    setButtonText("Login.....");
 
     try {
       let result = await fetch(`https://e-comm-server-indol.vercel.app/admin/login`, {
