@@ -23,7 +23,7 @@ function ImageGallery() {
       // If not logged in, navigate to the signup page
       navigate("/signup");
     }
-  }, [isLogin]);
+  }, [isLogin, navigate]);
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -45,6 +45,12 @@ function ImageGallery() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Ensure image is selected
+    if (!formData.profileImage) {
+      toast.error("Please select an image.");
+      return;
+    }
+
     const data = new FormData();
     data.append("profileImage", formData.profileImage);
     data.append("name", formData.name);
@@ -54,10 +60,13 @@ function ImageGallery() {
     data.append("details", formData.details);
 
     try {
-      const response = await fetch(`https://e-comm-server-indol.vercel.app/product`, {
-        method: "POST",
-        body: data,
-      });
+      const response = await fetch(
+        "https://e-comm-server-indol.vercel.app/product",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
 
       if (response.ok) {
         // Show success toast and navigate based on category
@@ -74,7 +83,7 @@ function ImageGallery() {
         // Handle error case
         const errorText = await response.text();
         console.error("Error:", errorText);
-        toast.error("Failed to add product. Please try again.");
+        toast.error(`Failed to add product. Vercel is not allow this. `);
       }
     } catch (err) {
       console.error("Error:", err);
@@ -221,7 +230,7 @@ function ImageGallery() {
               <button
                 type="submit"
                 className="btn btn-outline-info col-sm-12 mt-2 mb-5 w-100"
-                style={{ height: "50px", fontSize: "25px", width: "full" }}
+                style={{ height: "50px", fontSize: "25px" }}
               >
                 Add Product
               </button>
