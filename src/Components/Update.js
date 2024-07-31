@@ -84,7 +84,6 @@ export default function Update() {
 
   return (
     <div className="container1">
-      <Toaster position="top-right" reverseOrder={false} />
       <div className="container2">
         <form
           encType="multipart/form-data"
