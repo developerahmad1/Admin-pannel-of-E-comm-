@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./AddProducts.css";
 import { useAdmin } from "../Context/Admin";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import ProductContext from "../Context/Products"; // Import ProductContext
 
 function ImageGallery() {
   const { isLogin } = useAdmin();
   const navigate = useNavigate();
+  const { products, setProducts } = useContext(ProductContext); // Access fetchProducts from context
 
   // State to store form data
   const [formData, setFormData] = useState({
@@ -65,17 +67,14 @@ function ImageGallery() {
     data.append("details", formData.details);
 
     try {
-      const response = await fetch(
-        "https://e-comm-server-indol.vercel.app/product",
-        {
-          method: "POST",
-          body: data,
-        }
-      );
-
+      let response = await fetch(`${process.env.REACT_APP_API}/product`, {
+        method: "POST",
+        body: data,
+      });
       if (response.ok) {
-        // Show success toast and navigate based on category
-        toast.success("Product added successfully!");
+        let data = await response.json()
+        toast.success(data.message);
+        setProducts([data?.product, ...products ])
         const { category } = formData;
         if (category === "men") {
           navigate("/");

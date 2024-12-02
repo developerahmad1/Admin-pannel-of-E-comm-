@@ -10,7 +10,7 @@ export function ProductProvider({ children }) {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch('https://e-comm-server-indol.vercel.app/product');
+      const response = await fetch(`${process.env.REACT_APP_API}/product`);
       const data = await response.json();
       setProducts(data.reverse()); // Adjust if needed
     } catch (error) {
@@ -25,7 +25,7 @@ export function ProductProvider({ children }) {
   }, []);
 
   return (
-    <ProductContext.Provider value={{ products, loading, fetchProducts }}>
+    <ProductContext.Provider value={{ products, loading, fetchProducts, setProducts }}>
       {children}
     </ProductContext.Provider>
   );

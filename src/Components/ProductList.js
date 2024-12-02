@@ -18,7 +18,7 @@ export default function ProductList(props) {
 
   const deleteProduct = async (productId) => {
     try {
-      await fetch(`https://e-comm-server-indol.vercel.app/product/${productId}`, {
+      await fetch(`${process.env.REACT_APP_API}/product/${productId}`, {
         method: "DELETE",
       });
       await fetchProducts(); // Refetch products
@@ -63,8 +63,7 @@ export default function ProductList(props) {
                 <img
                   src={loader}
                   alt="Loading"
-                  className="image-loader"
-                  style={{ scale: "0.4", position: "static" }}
+                  style={{ scale: "0.4" }}
                 />
                 <img
                   src={item.image}

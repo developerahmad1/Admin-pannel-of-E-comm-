@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import ProductContext from "../Context/Products"; // Import ProductContext
 
 export default function Update() {
+  const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [newPrice, setNewPrice] = useState("");
   const [oldPrice, setOldPrice] = useState("");
@@ -12,31 +13,28 @@ export default function Update() {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
 
+  const {products} = useContext(ProductContext)
   const params = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
-  const { fetchProducts } = useContext(ProductContext); // Access fetchProducts from context
+  const { fetchProducts } = useContext(ProductContext);   
+  
 
   useEffect(() => {
-    getProductDetails();
-  }, []);
-
-  const getProductDetails = async () => {
-    try {
-      setLoading(true);
-      let result = await fetch(`https://e-comm-server-indol.vercel.app/product/${params.id}`);
-      result = await result.json();
-      setName(result.name);
-      setNewPrice(result.new_price);
-      setOldPrice(result.old_price);
-      setCategory(result.category);
-      setDetails(result.details);
-    } catch (err) {
-      console.error("Error fetching product details:", err);
-      toast.error("Failed to fetch product details. Please try again.");
-    } finally {
-      setLoading(false);
+    if(id){
+      let product = products.filter((product)=> product._id === id)[0]
+      setImage(product?.image)
+      setName(product?.name);
+      setNewPrice(product?.new_price);
+      setOldPrice(product?.old_price);
+      setCategory(product?.category);
+      setDetails(product?.details);
+      setLoading(false)
     }
-  };
+    
+  }, [id]);
+
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,10 +42,13 @@ export default function Update() {
 
     try {
       const formData = new FormData(event.target);
-      const response = await fetch(`https://e-comm-server-indol.vercel.app/product/update/${params.id}`, {
-        method: "PATCH",
-        body: formData,
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API}/product/update/${params.id}`,
+        {
+          method: "PATCH",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         toast.success("Product updated successfully!");
@@ -75,7 +76,14 @@ export default function Update() {
   if (loading) {
     return (
       <div>
-        <h1 style={{ color: "white", fontSize: "40px", marginTop: "150px", marginBottom: "50px" }}>
+        <h1
+          style={{
+            color: "white",
+            fontSize: "40px",
+            marginTop: "150px",
+            marginBottom: "50px",
+          }}
+        >
           Loading.....
         </h1>
       </div>
@@ -91,7 +99,10 @@ export default function Update() {
           onSubmit={handleSubmit}
         >
           <div className="form-group row">
-            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg my-2">
+            <label
+              htmlFor="colFormLabelLg"
+              className="col-sm-2 col-form-label col-form-label-lg my-2"
+            >
               Product Image:
             </label>
             <div className="col-sm-10">
@@ -104,7 +115,10 @@ export default function Update() {
           </div>
 
           <div className="form-group row">
-            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg my-2">
+            <label
+              htmlFor="colFormLabelLg"
+              className="col-sm-2 col-form-label col-form-label-lg my-2"
+            >
               Product Name:
             </label>
             <div className="col-sm-10">
@@ -122,7 +136,10 @@ export default function Update() {
           </div>
 
           <div className="form-group row">
-            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg my-2">
+            <label
+              htmlFor="colFormLabelLg"
+              className="col-sm-2 col-form-label col-form-label-lg my-2"
+            >
               New Price:
             </label>
             <div className="col-sm-10">
@@ -140,7 +157,10 @@ export default function Update() {
           </div>
 
           <div className="form-group row">
-            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg my-2">
+            <label
+              htmlFor="colFormLabelLg"
+              className="col-sm-2 col-form-label col-form-label-lg my-2"
+            >
               Old Price:
             </label>
             <div className="col-sm-10">
@@ -157,7 +177,10 @@ export default function Update() {
           </div>
 
           <div className="form-group row">
-            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg my-2">
+            <label
+              htmlFor="colFormLabelLg"
+              className="col-sm-2 col-form-label col-form-label-lg my-2"
+            >
               Select Type:
             </label>
             <div className="col-sm-10">
@@ -176,7 +199,10 @@ export default function Update() {
           </div>
 
           <div className="form-group row">
-            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg my-2">
+            <label
+              htmlFor="colFormLabelLg"
+              className="col-sm-2 col-form-label col-form-label-lg my-2"
+            >
               Details:
             </label>
             <div className="col-sm-10">
@@ -194,7 +220,10 @@ export default function Update() {
           </div>
 
           <div className="form-group row">
-            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg my-2"></label>
+            <label
+              htmlFor="colFormLabelLg"
+              className="col-sm-2 col-form-label col-form-label-lg my-2"
+            ></label>
             <div className="col-sm-10">
               <button
                 type="submit"

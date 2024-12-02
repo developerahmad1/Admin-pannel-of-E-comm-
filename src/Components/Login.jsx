@@ -37,7 +37,7 @@ export default function Login() {
     setButtonText("Login.....");
 
     try {
-      let result = await fetch(`https://e-comm-server-indol.vercel.app/admin/login`, {
+      let result = await fetch(`${process.env.REACT_APP_API}/admin/login`, {
         method: "post",
         body: JSON.stringify({ email, password }),
         headers: {
